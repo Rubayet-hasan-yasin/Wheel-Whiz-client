@@ -10,6 +10,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home/>
+            },
+            {
+                path: '/b',
+                element: <div>nai</div>
             }
         ]
     }
