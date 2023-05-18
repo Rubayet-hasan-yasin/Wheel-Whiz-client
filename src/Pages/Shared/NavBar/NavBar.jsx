@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { GiCarWheel } from "react-icons/gi";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { Tooltip } from "react-tooltip";
 
 
 
@@ -14,14 +15,14 @@ const NavBar = () => {
     };
 
 
-    const handleLogOut = ()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
@@ -45,22 +46,27 @@ const NavBar = () => {
                 All Toys
             </NavLink>
         </li>
-        <li>
-            <NavLink
-                to='/my-toys'
-                className={({ isActive }) => (isActive ? 'active' : 'default')}
-            >
-                My Toys
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-                to='/add-toy'
-                className={({ isActive }) => (isActive ? 'active' : 'default')}
-            >
-                Add A Toy
-            </NavLink>
-        </li>
+        {
+            user &&
+            <>
+                <li>
+                    <NavLink
+                        to='/my-toys'
+                        className={({ isActive }) => (isActive ? 'active' : 'default')}
+                    >
+                        My Toys
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        to='/add-toy'
+                        className={({ isActive }) => (isActive ? 'active' : 'default')}
+                    >
+                        Add A Toy
+                    </NavLink>
+                </li>
+            </>
+        }
         <li>
             <NavLink
                 to='/blog'
@@ -69,14 +75,20 @@ const NavBar = () => {
                 Blog
             </NavLink>
         </li>
-        <li className="avatar">
-            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-0">
-                <img src="https://i.ibb.co/vhHRv1N/154901-OV13-M5-460-ai.png" />
-            </div>
-        </li>
+        {
+            user &&
+            <li className="avatar">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-0">
+                    <img
+                        id='name-show'
+                        src={user?.photoURL || 'https://i.ibb.co/vhHRv1N/154901-OV13-M5-460-ai.png'}
+                        className="object-cover w-12 h-12" />
+                </div>
+            </li>
+        }
         <li>
             {user ?
-                    <button onClick={handleLogOut} className='ml-12 py-3 px-7 bg-[#F9A51A] rounded-lg shadow-md hover:bg-[#f9a31ac5] hover:ring-1'>Log out</button>
+                <button onClick={handleLogOut} className='ml-12 py-3 px-7 bg-[#F9A51A] rounded-lg shadow-md hover:bg-[#f9a31ac5] hover:ring-1'>Log out</button>
                 :
                 <Link to={'/login'}>
                     <button className='ml-12 py-3 px-7 bg-[#F9A51A] rounded-lg shadow-md hover:bg-[#f9a31ac5] hover:ring-1'>Login</button>
@@ -140,6 +152,8 @@ const NavBar = () => {
                     </ul>
                 )}
             </div>
+            <Tooltip anchorSelect="#name-show"
+                content={user?.displayName} />
         </nav>
     );
 };
