@@ -5,10 +5,10 @@ import { updateProfile } from "firebase/auth";
 
 const Register = () => {
     const [error, setError] = useState('');
-    const {registerWithEmailAndPassword} = useContext(AuthContext);
+    const { registerWithEmailAndPassword } = useContext(AuthContext);
 
 
-    const handleSubmit = event =>{
+    const handleSubmit = event => {
         event.preventDefault()
 
         const form = event.target;
@@ -18,26 +18,26 @@ const Register = () => {
         const password = form.password.value;
 
         registerWithEmailAndPassword(email, password)
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-            updateProfile(user, {
-                displayName: name,
-                photoURL: photo
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                updateProfile(user, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                    .then(() => { })
+                    .catch(error => {
+                        console.log(error);
+                        setError(error.message)
+                    })
             })
-            .then(()=>{})
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
                 setError(error.message)
             })
-        })
-        .catch(error=>{
-            console.log(error);
-            setError(error.message)
-        })
 
-form.reset()
-        
+        form.reset()
+
     }
 
 
