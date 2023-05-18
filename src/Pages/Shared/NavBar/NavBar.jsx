@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { GiCarWheel } from "react-icons/gi";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleMobileMenuToggle = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+
+
+    const handleLogOut = ()=>{
+        logOut()
+        .then(()=>{
+            
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+
+
+
 
 
     const list = <>
@@ -58,6 +74,15 @@ const NavBar = () => {
                 <img src="https://i.ibb.co/vhHRv1N/154901-OV13-M5-460-ai.png" />
             </div>
         </li>
+        <li>
+            {user ?
+                    <button onClick={handleLogOut} className='ml-12 py-3 px-7 bg-[#F9A51A] rounded-lg shadow-md hover:bg-[#f9a31ac5] hover:ring-1'>Log out</button>
+                :
+                <Link to={'/login'}>
+                    <button className='ml-12 py-3 px-7 bg-[#F9A51A] rounded-lg shadow-md hover:bg-[#f9a31ac5] hover:ring-1'>Login</button>
+                </Link>
+            }
+        </li>
     </>
 
 
@@ -76,6 +101,8 @@ const NavBar = () => {
                     <ul className='space-x-8 hidden md:flex md:items-center'>
                         {list}
                     </ul>
+
+
 
 
                     <div className="flex md:hidden">
