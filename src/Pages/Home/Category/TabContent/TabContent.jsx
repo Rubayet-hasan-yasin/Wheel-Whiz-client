@@ -29,7 +29,7 @@ const TabContent = ({ selectedTab }) => {
     }
 
     return (
-        <div className="grid md:grid-cols-3 space-x-7">
+        <div className="grid md:grid-cols-3 gap-8 my-10">
             {
                 toys.map(toy => <div key={toy._id} className="card card-side bg-base-100 shadow-xl w-full">
                     <figure className="w-2/5"><img src={toy?.img} alt="toy" className="object-fill h-full" /></figure>

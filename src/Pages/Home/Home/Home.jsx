@@ -1,6 +1,7 @@
 import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
 import HomeGellery from "../HomeGallery/HomeGellery";
+import Slider from "../slider/Slider";
 
 const Home = () => {
     return (
@@ -22,8 +23,14 @@ const Home = () => {
 
 
 
-                <Category/>
-                
+                <Category />
+
+            </div>
+
+            <div className="my-40">
+                <h1 className="text-5xl font-bold text-center text-gray-800">CAR COLLECTION</h1>
+                <p className="text-center text-base text-gray-500 mt-1">Get behind the wheel of the coolest, fastest and most legendary vehicles, with their own personality, driving style and levels of rarity.</p>
+                <Slider></Slider>
             </div>
         </div>
     );
