@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Rating } from '@smastrom/react-rating'
-import gif from '../../../../assets/htw-loader.gif'
+import gif from '../../../../assets/142142-carhackdogs.gif'
 
 import '@smastrom/react-rating/style.css'
 
@@ -23,7 +23,7 @@ const TabContent = ({ selectedTab }) => {
     if (istrue) {
         return (
             <figure className="w-full">
-                <img src={gif} alt="" className="mx-auto rounded-full w-36"/>
+                <img src={gif} alt="" className="mx-auto rounded-full w-36 mt-16"/>
             </figure>
         );
     }
