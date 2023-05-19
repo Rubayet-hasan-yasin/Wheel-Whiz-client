@@ -1,4 +1,5 @@
 .clip-path{
-    clip-path: polygon(0 0, 57% 0, 90% 100%, 0% 100%); 
+    clip-path: polygon(0 0  , 57% 0, 90% 100%, 0% 100%); 
     border-bottom: 1px solid white;
+    
 }

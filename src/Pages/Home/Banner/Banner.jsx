@@ -3,13 +3,13 @@ import './Banner.css'
 
 const Banner = () => {
     return (
-        <div className='md:flex w-full'>
+        <div className='md:flex w-full my-20'>
             <div className='md:w-[50%] h-full relative clip-path'>
                 <img src={bannerIMG} alt="banner image" className='object-cover w-full'/>
             </div>
 
 
-            <div className='text-right md:w-[55%] '>
+            <div className='md:w-[55%] '>
                 <h4 className="text-red-700 text-4xl font-extrabold">NISSAN</h4>
                 <h2 className='text-fuchsia-500 text-6xl font-extrabold mb-5'>SILVIA S15</h2>
 
