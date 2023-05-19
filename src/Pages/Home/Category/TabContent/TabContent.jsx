@@ -32,7 +32,7 @@ const TabContent = ({ selectedTab }) => {
         <div className="grid md:grid-cols-3 space-x-7">
             {
                 toys.map(toy => <div key={toy._id} className="card card-side bg-base-100 shadow-xl w-full">
-                    <figure className="w-2/5"><img src={toy?.img} alt="toy" className="object-cover w-full" /></figure>
+                    <figure className="w-2/5"><img src={toy?.img} alt="toy" className="object-fill h-full" /></figure>
                     <div className="card-body w-3/5">
                         <h2 className="card-title">{toy.toyName}</h2>
                         <p>Price: {toy.price}</p>
@@ -42,7 +42,7 @@ const TabContent = ({ selectedTab }) => {
                             readOnly
                         />{toy.rating}</p>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Watch</button>
+                            <button className="btn btn-primary">View Details</button>
                         </div>
                     </div>
                 </div>)
