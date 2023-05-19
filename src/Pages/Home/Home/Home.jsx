@@ -9,7 +9,12 @@ import gif4 from '../../../assets/wonder-car.gif'
 import Lottie from "lottie-react";
 import carAnimation from "../../../assets/car-gps.json";
 
+
+
+
 const Home = () => {
+
+
     return (
         <div>
             <Banner />
@@ -46,11 +51,20 @@ const Home = () => {
                 <img src={gif4} alt="gif" className="h-36" />
             </div>
 
-            <div className="grid grid-cols-2">
+
+            <h1 className="text-5xl font-bold text-center text-gray-800 mt-40">Visit Us</h1>
+            <p className="text-center text-base text-gray-500 mt-1 mb-20">Discover our physical address, contact information, and how to reach us.</p>
+
+
+            <div className="grid grid-cols-2 ">
+
                 <div className="">
                     <Lottie className="h-full w-fit" animationData={carAnimation} loop={true}></Lottie>
                 </div>
 
+                <div className="">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d564452.2195330671!2d8.196773100711873!3d48.91400829796402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41096003a04d9eeb%3A0x32a3117d633f8060!2sWhizz-Wheels!5e0!3m2!1sen!2sbd!4v1684517556391!5m2!1sen!2sbd" width="100%" height="100%" style={{border:0}} allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     );
