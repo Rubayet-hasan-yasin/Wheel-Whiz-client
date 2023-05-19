@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+    useTitle('Login')
     const [error, setError] = useState('');
     const { loginWithEmailAndPassword } = useContext(AuthContext);
 

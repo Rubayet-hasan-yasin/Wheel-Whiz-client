@@ -8,11 +8,13 @@ import gif3 from '../../../assets/red-car.gif'
 import gif4 from '../../../assets/wonder-car.gif'
 import Lottie from "lottie-react";
 import carAnimation from "../../../assets/car-gps.json";
+import useTitle from "../../../hooks/useTitle";
 
 
 
 
 const Home = () => {
+    useTitle('Home')
 
 
     return (
