@@ -58,7 +58,7 @@ const Home = () => {
             <p className="text-center text-base text-gray-500 mt-1 mb-20">Discover our physical address, contact information, and how to reach us.</p>
 
 
-            <div className="grid grid-cols-2 ">
+            <div className="grid grid-cols-2 my-20">
 
                 <div className="">
                     <Lottie className="h-full w-fit" animationData={carAnimation} loop={true}></Lottie>
