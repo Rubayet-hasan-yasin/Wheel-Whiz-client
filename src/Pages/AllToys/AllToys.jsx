@@ -21,11 +21,11 @@ const AllToys = () => {
                 <thead>
                     <tr>
                         <th>Toy image</th>
-                        <th>Seller Name</th>
+                        <th>Seller</th>
                         <th>category</th>
                         <th>Price</th>
                         <th>Available</th>
-                        <th></th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
