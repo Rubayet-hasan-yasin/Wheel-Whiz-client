@@ -23,7 +23,7 @@ const TabContent = ({ selectedTab }) => {
     if (istrue) {
         return (
             <figure className="w-full">
-                <img src={gif} alt="" className="mx-auto rounded-full w-36 mt-16"/>
+                <img src={gif} alt="" className="mx-auto rounded-full w-36 mt-16" />
             </figure>
         );
     }
@@ -35,14 +35,17 @@ const TabContent = ({ selectedTab }) => {
                     <figure className="w-2/5"><img src={toy?.img} alt="toy" className="object-fill h-full" /></figure>
                     <div className="card-body w-3/5">
                         <h2 className="card-title">{toy.toyName}</h2>
-                        <p>Price: {toy.price}</p>
-                        <p className="flex items-center gap-3"><Rating
-                            style={{ maxWidth: 120 }}
-                            value={toy.rating}
-                            readOnly
-                        />{toy.rating}</p>
+                        <p>Price: ${toy.price}</p>
+                        <div className="flex items-center gap-3">
+                            <Rating
+                                style={{ maxWidth: 120 }}
+                                value={toy.rating}
+                                readOnly
+                            />
+                            <p>{toy.rating}</p>
+                        </div>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">View Details</button>
+                            <button className="btn btn-ghost btn-xs bg-slate-200">details</button>
                         </div>
                     </div>
                 </div>)
