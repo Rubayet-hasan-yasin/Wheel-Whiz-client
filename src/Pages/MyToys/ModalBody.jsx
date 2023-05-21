@@ -1,14 +1,16 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { useState } from 'react';
 import { toast } from "react-hot-toast";
+import Swal from 'sweetalert2';
 
-const ModalBody = ({ modalData }) => {
-    const { user } = useContext(AuthContext);
-    const { img, toyName, price, rating, sellerName, subCategory, availableQuantity, sellerEmail, description } = modalData;
-    
+
+const ModalBody = ({ modalData, setIsUpdate, isUpdate }) => {
+    const { _id, img, toyName, price, rating, sellerName, subCategory, availableQuantity, sellerEmail, description } = modalData;
+
     const [selectValue, setSelectValue] = useState(subCategory);
 
-    console.log(modalData);
+    
+
+    console.log(selectValue);
 
 
     const handleUpdateToy = event => {
@@ -39,7 +41,7 @@ const ModalBody = ({ modalData }) => {
 
         console.log(updateToy);
 
-        fetch('', {
+        fetch(`http://localhost:5000/updateToy/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,17 +51,25 @@ const ModalBody = ({ modalData }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                if (data.modifiedCount > 0) {
+                    Swal.fire(
+                        'TOY Updated!',
+                        ' ',
+                        'success'
+                    )
+                    setIsUpdate(!isUpdate)
+                }
             })
 
+
     }
+
+    
 
 
 
     return (
         <div className="w-10/12 mx-auto">
-            <div className="modal-action mt-3">
-                <label htmlFor="my-modal-5" className="btn m-0">Close</label>
-            </div>
             <h1 className="md:text-5xl font-bold text-center text-gray-200 md:mb-16 mb-10">UPDATE YOUR TOY</h1>
 
             <form onSubmit={handleUpdateToy} className="">
@@ -75,8 +85,8 @@ const ModalBody = ({ modalData }) => {
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 w-full mb-6 group">
-        
-                        <input type="text" name="toyName" defaultValue={toyName} id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required/>
+
+                        <input type="text" name="toyName" defaultValue={toyName} id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                         <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-white peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Toy name</label>
                     </div>
                     <div className="relative z-0 w-full mb-6 group">
@@ -127,7 +137,9 @@ const ModalBody = ({ modalData }) => {
 
 
 
-                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full px-5 py-4 text-center md:mt-16">Submit</button>
+                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full text-center md:mt-16">
+                    <label htmlFor="my-modal-5" className='w-full flex text-center justify-center py-3'>Save & Close</label>
+                </button>
             </form>
 
         </div>

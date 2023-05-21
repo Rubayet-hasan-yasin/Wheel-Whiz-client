@@ -9,6 +9,7 @@ const MyToys = () => {
     const [myToys, setMyToys] = useState([]);
     const [uniqueId, setUniqueId] = useState(null);
     const [modalData, setModalData] = useState({})
+    const [isUpdate, setIsUpdate] = useState(false)
 
 
 
@@ -19,7 +20,7 @@ const MyToys = () => {
                 console.log(data);
                 setMyToys(data)
             })
-    }, [user])
+    }, [user,isUpdate])
 
 
     useEffect(() => {
@@ -66,6 +67,8 @@ const MyToys = () => {
             <MyModal>
                 <ModalBody
                 modalData={modalData}
+                setIsUpdate={setIsUpdate}
+                isUpdate={isUpdate}
                  ></ModalBody>
             </MyModal>
 
