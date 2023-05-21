@@ -3,13 +3,15 @@ import MyToysTR from "./MyToysTR";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import MyModal from "./MyModal";
 import ModalBody from "./ModalBody";
+import gif from '../../assets/142142-carhackdogs.gif'
 
 const MyToys = () => {
-    const { user } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
     const [myToys, setMyToys] = useState([]);
     const [uniqueId, setUniqueId] = useState(null);
     const [modalData, setModalData] = useState({})
-    const [isUpdate, setIsUpdate] = useState(false)
+    const [isUpdate, setIsUpdate] = useState(false);
+    const [isData, setIsData] = useState(true)
 
 
 
@@ -19,8 +21,9 @@ const MyToys = () => {
             .then(data => {
                 console.log(data);
                 setMyToys(data)
+                setIsData(false)
             })
-    }, [user,isUpdate])
+    }, [user, isUpdate])
 
 
     useEffect(() => {
@@ -33,6 +36,14 @@ const MyToys = () => {
             })
     }, [uniqueId])
 
+
+    if (loading || isData ) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <img src={gif} alt="" className="mx-auto rounded-full w-36 mt-16" />
+            </div>
+        );
+    }
 
     return (
         <div className="overflow-x-auto w-full my-20">
@@ -59,6 +70,8 @@ const MyToys = () => {
                             key={toy._id}
                             toy={toy}
                             setUniqueId={setUniqueId}
+                            setIsUpdate={setIsUpdate}
+                            isUpdate={isUpdate}
                         />)
                     }
 
@@ -66,10 +79,10 @@ const MyToys = () => {
             </table>
             <MyModal>
                 <ModalBody
-                modalData={modalData}
-                setIsUpdate={setIsUpdate}
-                isUpdate={isUpdate}
-                 ></ModalBody>
+                    modalData={modalData}
+                    setIsUpdate={setIsUpdate}
+                    isUpdate={isUpdate}
+                ></ModalBody>
             </MyModal>
 
 

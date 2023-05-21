@@ -4,8 +4,24 @@ import { AiFillDelete } from "react-icons/ai";
 
 
 
-const MyToysTR = ({ toy, setUniqueId }) => {
+const MyToysTR = ({ toy, setUniqueId, setIsUpdate, isUpdate }) => {
     const {_id, img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail, description } = toy;
+
+
+    const handleDeleteToy = id =>{
+        
+        fetch(`http://localhost:5000/deleteToy/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.deletedCount > 0){
+                setIsUpdate(!isUpdate)
+            }
+        })
+
+    }
 
 
     return (
@@ -44,7 +60,7 @@ const MyToysTR = ({ toy, setUniqueId }) => {
                 <label onClick={()=>setUniqueId(_id)} htmlFor="my-modal-5" className="btn btn-ghost btn-xs bg-slate-200 mx-1">
                     <FaEdit className="w-5 h-5" /></label>
                     
-                <button className="btn btn-ghost btn-xs bg-slate-200 mx-1"><AiFillDelete className="w-5 h-5" /></button>
+                <button onClick={()=>handleDeleteToy(_id)} className="btn btn-ghost btn-xs bg-slate-200 mx-1"><AiFillDelete className="w-5 h-5" /></button>
 
             </th>
         </tr>
