@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Rating } from '@smastrom/react-rating'
 import gif from '../../../../assets/142142-carhackdogs.gif'
 
 import '@smastrom/react-rating/style.css'
+import { AuthContext } from "../../../../AuthProvider/AuthProvider";
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const TabContent = ({ selectedTab }) => {
+    const { user } = useContext(AuthContext)
     const [toys, setToys] = useState([]);
     const [istrue, setIsTrue] = useState(false);
 
-    console.log(selectedTab);
+    // console.log(selectedTab);
     useEffect(() => {
         setIsTrue(true)
         fetch(`https://wheel-whiz-server.vercel.app/category?category=${selectedTab}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setToys(data)
                 setIsTrue(false)
             })
@@ -27,6 +31,19 @@ const TabContent = ({ selectedTab }) => {
             </figure>
         );
     }
+
+
+
+
+    const handleViewDetails = () => {
+        if (!user) {
+            return (
+                toast.error("You have to log in first to view details.")
+            )
+        }
+    }
+
+
 
     return (
         <div className="grid md:grid-cols-3 gap-8 my-10">
@@ -44,8 +61,10 @@ const TabContent = ({ selectedTab }) => {
                             />
                             <p>{toy.rating}</p>
                         </div>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-ghost btn-xs bg-slate-200">details</button>
+                        <div onClick={() => handleViewDetails(toy._id)} className="card-actions justify-end">
+                            <Link to={`/details/${toy?._id}`}>
+                                <button className="btn btn-ghost btn-xs bg-slate-200">details</button>
+                            </Link>
                         </div>
                     </div>
                 </div>)

@@ -8,6 +8,7 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Home from "../Pages/Home/Home/Home";
+import ViewDetails from "../Pages/Shared/ViewDetails/ViewDetails";
 
 const router = createBrowserRouter([
     {
@@ -31,8 +32,14 @@ const router = createBrowserRouter([
                 element: <AddToy/>
             },
             {
-                path: 'blog',
+                path: '/blog',
                 element: <Blogs/>
+            },
+            {
+                path: '/details/:id',
+                element: <ViewDetails/>,
+                loader: ({params})=> fetch(`https://wheel-whiz-server.vercel.app/details/${params.id}`)
+
             },
             {
                 path: '/register',
