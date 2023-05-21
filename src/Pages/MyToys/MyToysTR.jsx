@@ -1,25 +1,49 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 
 
 
 const MyToysTR = ({ toy, setUniqueId, setIsUpdate, isUpdate }) => {
-    const {_id, img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail, description } = toy;
+    const { _id, img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail, description } = toy;
 
 
-    const handleDeleteToy = id =>{
-        
-        fetch(`https://wheel-whiz-server.vercel.app/deleteToy/${id}`, {
-            method: 'DELETE'
-        })
-        .then(res=> res.json())
-        .then(data=>{
-            console.log(data);
-            if(data.deletedCount > 0){
-                setIsUpdate(!isUpdate)
+    const handleDeleteToy = id => {
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`https://wheel-whiz-server.vercel.app/deleteToy/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            setIsUpdate(!isUpdate)
+
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+
             }
         })
+
+
 
     }
 
@@ -57,10 +81,10 @@ const MyToysTR = ({ toy, setUniqueId, setIsUpdate, isUpdate }) => {
             <td>${price}</td>
             <td>{availableQuantity}</td>
             <th>
-                <label onClick={()=>setUniqueId(_id)} htmlFor="my-modal-5" className="btn btn-ghost btn-xs bg-slate-200 mx-1">
+                <label onClick={() => setUniqueId(_id)} htmlFor="my-modal-5" className="btn btn-ghost btn-xs bg-slate-200 mx-1">
                     <FaEdit className="w-5 h-5" /></label>
-                    
-                <button onClick={()=>handleDeleteToy(_id)} className="btn btn-ghost btn-xs bg-slate-200 mx-1"><AiFillDelete className="w-5 h-5" /></button>
+
+                <button onClick={() => handleDeleteToy(_id)} className="btn btn-ghost btn-xs bg-slate-200 mx-1"><AiFillDelete className="w-5 h-5" /></button>
 
             </th>
         </tr>

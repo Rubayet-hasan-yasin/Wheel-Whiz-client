@@ -39,7 +39,7 @@ const router = createBrowserRouter([
                 element: <Blogs/>
             },
             {
-                path: '/details/:id',
+                path: '/toy/:id',
                 element: <PrivateRoutes><ViewDetails/></PrivateRoutes>,
                 loader: ({params})=> fetch(`https://wheel-whiz-server.vercel.app/details/${params.id}`)
 

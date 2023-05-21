@@ -43,7 +43,7 @@ const TableRow = ({ toy }) => {
             <td>${price}</td>
             <td>{availableQuantity}</td>
             <th>
-                <Link to={`/details/${toy?._id}`}>
+                <Link to={`/toy/${toy?._id}`}>
                     <button onClick={() => handleViewDetails(toy._id)} className="btn btn-ghost btn-xs bg-slate-200">details</button>
                 </Link>
             </th>

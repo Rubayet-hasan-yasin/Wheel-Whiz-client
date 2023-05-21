@@ -9,6 +9,10 @@ import gif4 from '../../../assets/wonder-car.gif'
 import Lottie from "lottie-react";
 import carAnimation from "../../../assets/car-gps.json";
 import useTitle from "../../../hooks/useTitle";
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+
+// AOS.init();
 
 
 
