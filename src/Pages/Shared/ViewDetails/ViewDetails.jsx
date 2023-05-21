@@ -11,7 +11,7 @@ const ViewDetails = () => {
 
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl gap-10">
+        <div className="card lg:card-side bg-base-100 shadow-xl gap-10 my-10">
             <figure className="w-1/3"><img src={img} alt="toy img" className="object-cover w-full" /></figure>
             <div className="card-body w-1/2">
                 <h2 className="text-5xl text-gray-700 font-bold my-2">{toyName}</h2>

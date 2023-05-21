@@ -1,13 +1,18 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
+import GoogleButton from "./GoogleButton/GoogleButton";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
     useTitle('Login')
     const [error, setError] = useState('');
     const { loginWithEmailAndPassword } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
 
     const handleSubmit = event => {
@@ -21,6 +26,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true })
+                toast.success('Successfully Login!')
+
             })
             .catch(error => {
                 console.log(error);
@@ -47,10 +55,7 @@ const Login = () => {
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Register</button>
                 </form>
                 <p className="text-sm text-gray-700 mt-4">Don't have an account? <Link to={'/register'} className="text-blue-500 font-bold">Register here</Link></p>
-
-                <div className="grid place-content-center mt-16">
-                    <button className='flex items-center gap-4 text-xl font-extrabold text-white bg-blue-950 hover:bg-blue-900 px-9 py-2 rounded-3xl shadow-xl my-1 focus:ring-4 hover:ring-2'><FcGoogle className='h-8 w-8' /> Login With Google</button>
-                </div>
+            <GoogleButton></GoogleButton>
             </div>
         </div>
     );

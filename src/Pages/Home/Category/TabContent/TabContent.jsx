@@ -61,9 +61,9 @@ const TabContent = ({ selectedTab }) => {
                             />
                             <p>{toy.rating}</p>
                         </div>
-                        <div onClick={() => handleViewDetails(toy._id)} className="card-actions justify-end">
+                        <div className="card-actions justify-end">
                             <Link to={`/details/${toy?._id}`}>
-                                <button className="btn btn-ghost btn-xs bg-slate-200">details</button>
+                                <button onClick={() => handleViewDetails(toy._id)} className="btn btn-ghost btn-xs bg-slate-200">details</button>
                             </Link>
                         </div>
                     </div>

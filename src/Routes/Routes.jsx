@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Home from "../Pages/Home/Home/Home";
 import ViewDetails from "../Pages/Shared/ViewDetails/ViewDetails";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -25,11 +26,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/my-toys',
-                element: <MyToys/>
+                element: <PrivateRoutes><MyToys/></PrivateRoutes>
             },
             {
                 path: '/add-toy',
-                element: <AddToy/>
+                element: <PrivateRoutes><AddToy/></PrivateRoutes>
             },
             {
                 path: '/blog',
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <ViewDetails/>,
+                element: <PrivateRoutes><ViewDetails/></PrivateRoutes>,
                 loader: ({params})=> fetch(`https://wheel-whiz-server.vercel.app/details/${params.id}`)
 
             },

@@ -1,5 +1,21 @@
-const TableRow = ({toy}) => {
-    const {img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail} = toy;
+import { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
+
+const TableRow = ({ toy }) => {
+    const { user } = useContext(AuthContext);
+    const { img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail } = toy;
+
+
+    const handleViewDetails = () => {
+        if (!user) {
+            return (
+                toast.error("You have to log in first to view details.")
+            )
+        }
+    }
+
 
     return (
         <tr>
@@ -27,7 +43,9 @@ const TableRow = ({toy}) => {
             <td>${price}</td>
             <td>{availableQuantity}</td>
             <th>
-                <button className="btn btn-ghost btn-xs bg-slate-200">details</button>
+                <Link to={`/details/${toy?._id}`}>
+                    <button onClick={() => handleViewDetails(toy._id)} className="btn btn-ghost btn-xs bg-slate-200">details</button>
+                </Link>
             </th>
         </tr>
     );
