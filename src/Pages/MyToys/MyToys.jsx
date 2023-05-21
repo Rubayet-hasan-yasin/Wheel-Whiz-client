@@ -1,10 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import MyToysTR from "./MyToysTR";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import MyModal from "./MyModal";
+import ModalBody from "./ModalBody";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
     const [myToys, setMyToys] = useState([]);
+    const [uniqueId, setUniqueId] = useState(null);
+    const [modalData, setModalData] = useState({})
 
 
 
@@ -16,6 +20,17 @@ const MyToys = () => {
                 setMyToys(data)
             })
     }, [user])
+
+
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/updateToy/${uniqueId}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setModalData(data)
+            })
+    }, [uniqueId])
 
 
     return (
@@ -42,11 +57,19 @@ const MyToys = () => {
                         myToys.map(toy => <MyToysTR
                             key={toy._id}
                             toy={toy}
+                            setUniqueId={setUniqueId}
                         />)
                     }
 
                 </tbody>
             </table>
+            <MyModal>
+                <ModalBody
+                modalData={modalData}
+                 ></ModalBody>
+            </MyModal>
+
+
         </div>
     );
 };

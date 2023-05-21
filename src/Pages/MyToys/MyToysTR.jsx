@@ -4,8 +4,8 @@ import { AiFillDelete } from "react-icons/ai";
 
 
 
-const MyToysTR = ({ toy }) => {
-    const { img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail, description } = toy;
+const MyToysTR = ({ toy, setUniqueId }) => {
+    const {_id, img, toyName, price, sellerName, subCategory, availableQuantity, sellerEmail, description } = toy;
 
 
     return (
@@ -41,8 +41,9 @@ const MyToysTR = ({ toy }) => {
             <td>${price}</td>
             <td>{availableQuantity}</td>
             <th>
-                <button className="btn btn-ghost btn-xs bg-slate-200 mx-1">
-                    <FaEdit className="w-5 h-5" /></button>
+                <label onClick={()=>setUniqueId(_id)} htmlFor="my-modal-5" className="btn btn-ghost btn-xs bg-slate-200 mx-1">
+                    <FaEdit className="w-5 h-5" /></label>
+                    
                 <button className="btn btn-ghost btn-xs bg-slate-200 mx-1"><AiFillDelete className="w-5 h-5" /></button>
 
             </th>
