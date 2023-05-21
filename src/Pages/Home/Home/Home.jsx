@@ -9,10 +9,10 @@ import gif4 from '../../../assets/wonder-car.gif'
 import Lottie from "lottie-react";
 import carAnimation from "../../../assets/car-gps.json";
 import useTitle from "../../../hooks/useTitle";
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-// AOS.init();
+AOS.init();
 
 
 
@@ -25,7 +25,7 @@ const Home = () => {
         <div>
             <Banner />
 
-            <div className="my-40">
+            <div data-aos="flip-up" className="my-40 overflow-hidden">
                 <h1 className="text-5xl font-bold text-center text-gray-800"> A Gallery of Wheel</h1>
                 <p className="text-center text-base text-gray-500 font-semibold mt-1 mb-20">Discover the laughter, the adventures, and the limitless possibilities that Wheel bring to life.</p>
 
@@ -44,7 +44,7 @@ const Home = () => {
 
             </div>
 
-            <div className="my-40">
+            <div className="my-40 overflow-hidden">
                 <h1 className="text-5xl font-bold text-center text-gray-800">CAR COLLECTION</h1>
                 <p className="text-center text-base text-gray-500 mt-1">Get behind the wheel of the coolest, fastest and most legendary vehicles, with their own personality, driving style and levels of rarity.</p>
                 <Slider></Slider>
