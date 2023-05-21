@@ -16,7 +16,7 @@ const MyToys = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myToys?email=${user?.email}`)
+        fetch(`https://wheel-whiz-server.vercel.app/myToys?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -28,16 +28,18 @@ const MyToys = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/updateToy/${uniqueId}`)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data);
-                setModalData(data)
-            })
+        if (uniqueId) {
+            fetch(`https://wheel-whiz-server.vercel.app/updateToy/${uniqueId}`)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    setModalData(data)
+                })
+        }
     }, [uniqueId])
 
 
-    if (loading || isData ) {
+    if (loading || isData) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <img src={gif} alt="" className="mx-auto rounded-full w-36 mt-16" />

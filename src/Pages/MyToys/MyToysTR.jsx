@@ -10,7 +10,7 @@ const MyToysTR = ({ toy, setUniqueId, setIsUpdate, isUpdate }) => {
 
     const handleDeleteToy = id =>{
         
-        fetch(`http://localhost:5000/deleteToy/${id}`, {
+        fetch(`https://wheel-whiz-server.vercel.app/deleteToy/${id}`, {
             method: 'DELETE'
         })
         .then(res=> res.json())

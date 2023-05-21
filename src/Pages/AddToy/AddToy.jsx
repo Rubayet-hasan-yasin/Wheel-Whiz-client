@@ -57,7 +57,7 @@ const AddToy = () => {
 
         console.log(toy);
 
-        fetch('http://localhost:5000/addToy', {
+        fetch('https://wheel-whiz-server.vercel.app/addToy', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -11,7 +11,7 @@ const TabContent = ({ selectedTab }) => {
     console.log(selectedTab);
     useEffect(() => {
         setIsTrue(true)
-        fetch(`http://localhost:5000/category?category=${selectedTab}`)
+        fetch(`https://wheel-whiz-server.vercel.app/category?category=${selectedTab}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
