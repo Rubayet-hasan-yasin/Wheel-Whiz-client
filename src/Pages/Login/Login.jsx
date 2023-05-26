@@ -52,7 +52,7 @@ const Login = () => {
                         <input type="password" name="password" id="password" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" required />
                     </div>
                     <p className="text-warning mb-5 text-base">{error}</p>
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Register</button>
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Login</button>
                 </form>
                 <p className="text-sm text-gray-700 mt-4">Don't have an account? <Link to={'/register'} className="text-blue-500 font-bold">Register here</Link></p>
             <GoogleButton></GoogleButton>
